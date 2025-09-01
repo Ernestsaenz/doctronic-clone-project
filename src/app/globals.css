@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Colors */
+  --color-background: #FFFFFF;
+  --color-foreground: #1F2937; /* Text Primary */
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1F2937;
+
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #1F2937;
+
+  --color-primary: #2563EB; /* Primary Blue */
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #F9FAFB; /* Background Secondary */
+  --color-secondary-foreground: #1F2937;
+
+  --color-muted: #F9FAFB; /* Background Secondary */
+  --color-muted-foreground: #6B7280; /* Text Secondary */
+
+  --color-accent: #E5F3FF; /* Secondary Blue */
+  --color-accent-foreground: #2563EB; /* Primary Blue */
+
+  --color-destructive: #EF4444; /* Example red, not explicitly in design but good to have */
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-border: #E5E7EB; /* Border Light */
+  --color-input: #E5E7EB; /* Border Light */
+  --color-ring: #2563EB; /* Primary Blue */
+
+  /* Chart colors (placeholders, not explicitly defined in design) */
+  --color-chart-1: #2563EB;
+  --color-chart-2: #10B981;
+  --color-chart-3: #F59E0B;
+  --color-chart-4: #8B5CF6;
+  --color-chart-5: #EF4444;
+
+  /* Custom Doctronic.ai Colors */
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-caption: #9CA3AF;
+  --color-success-green: #10B981;
+
+  /* Typography */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Shadcn/UI Radii (adjusted to design system) */
+  --radius-lg: 0.75rem; /* 12px for cards */
+  --radius-md: 0.5rem; /* 8px for buttons */
+  --radius-sm: 0.25rem; /* Smaller elements */
+
+  /* Shadcn/UI Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-md); /* Default radius for Shadcn components */
+  }
+
+  /* No dark theme detected, so no dark mode block is generated */
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6; /* Body text line height */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+    line-height: 1.2; /* Headings line height */
+  }
+
+  h1 {
+    font-size: 48px; /* Hero Heading */
+    font-weight: 700; /* Bold */
+  }
+
+  h2 {
+    font-size: 36px; /* Section Headings */
+    font-weight: 700; /* Bold */
+  }
+
+  h3 {
+    font-size: 24px; /* Subheadings */
+    font-weight: 500; /* Medium */
+  }
+
+  p {
+    font-size: 16px; /* Body Text */
+    font-weight: 400; /* Regular */
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
